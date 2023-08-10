@@ -21,11 +21,12 @@ repositories {
     mavenCentral()
 }
 
-ext{
-    set('springColudVersion',"2021.0.1")
+ext {
+    set('springColudVersion', "2021.0.1")
 }
 
 dependencies {
+    implementation(project(path: ":zerobase-domain", configuration: 'default'))
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
