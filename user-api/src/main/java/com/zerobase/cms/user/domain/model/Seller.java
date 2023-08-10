@@ -17,10 +17,6 @@ import java.util.Locale;
 @Builder
 @AuditOverride(forClass = BaseEntity.class)
 public class Seller extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
     @Column(unique = true)
     private String email;
     private String name;
