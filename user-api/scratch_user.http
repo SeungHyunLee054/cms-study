@@ -1,0 +1,46 @@
+
+### 회원가입 ( 고객 )
+POST http://localhost:8081/signUp/customer
+Content-Type: application/json
+
+{
+  "birth": "1999-02-26",
+  "email": "yellow13lsh@naver.com",
+  "name": "myNmae",
+  "password": "1234",
+  "phone": "01012345678"
+}
+
+### 이메일 인증 ( 고객 )
+GET http://localhost:8081/signUp/customer/verify?email=yellow13lsh@naver.com&code=RH1PvaSelB
+
+### 로그인 ( 고객 )
+POST http://localhost:8081/signIn/customer
+Content-Type: application/json
+
+{
+  "email": "yellow13lsh@naver.com",
+  "password": "1234"
+}
+
+### 회원 정보 조회 ( 고객 )
+GET http://localhost:8081/customer/getInfo
+Content-Type: application/json
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJidCt2TURvSFVmMkdQSXlKbjkrV3BRcVlMN0twS2YvY2RIaEJGcERDM2FRPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE2OTE3MDcyNTMsImV4cCI6MTY5MTc5MzY1M30.hcN1_7ZM3auTcvhdFbnrfW2q_2BAa2GVXNIs1jQgMnE
+
+### 잔액 변경 ( 고객 )
+POST http://localhost:8081/customer/balance
+Content-Type: application/json
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJidCt2TURvSFVmMkdQSXlKbjkrV3BRcVlMN0twS2YvY2RIaEJGcERDM2FRPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE2OTE3MDcyNTMsImV4cCI6MTY5MTc5MzY1M30.hcN1_7ZM3auTcvhdFbnrfW2q_2BAa2GVXNIs1jQgMnE
+
+{
+  "from": "server",
+  "message": "돈 충전",
+  "money": 50000
+}
+
+#######################################
+
+### 회원 가입 ( 셀러 )
+
+### 로그인 ( 셀러 )
