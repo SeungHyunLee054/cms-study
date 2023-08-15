@@ -1,8 +1,8 @@
 package com.zerobase.cms.order.controller;
 
 import com.zerobase.cms.order.domain.product.*;
-import com.zerobase.cms.order.service.ProductItemService;
-import com.zerobase.cms.order.service.ProductService;
+import com.zerobase.cms.order.service.ProductItemServiceImpl;
+import com.zerobase.cms.order.service.ProductServiceImpl;
 import com.zerobase.domain.config.JwtAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/seller/product")
 public class SellerProductController {
-    private final ProductService productService;
-    private final ProductItemService productItemService;
+    private final ProductServiceImpl productService;
+    private final ProductItemServiceImpl productItemServiceImpl;
     private final JwtAuthenticationProvider provider;
 
     @PostMapping
@@ -28,7 +28,7 @@ public class SellerProductController {
     public ResponseEntity<ProductDto> addProductItem(@RequestHeader(name = "X-AUTH-TOKEN") String token
             , @RequestBody AddProductItemForm form) {
         return ResponseEntity.ok(ProductDto.from(
-                productItemService.addProductItem(
+                productItemServiceImpl.addProductItem(
                         provider.getUserVo(token).getId(), form)));
     }
 
@@ -44,7 +44,7 @@ public class SellerProductController {
     public ResponseEntity<ProductItemDto> updateProductItem(@RequestHeader(name = "X-AUTH-TOKEN") String token
             , @RequestBody UpdateProductItemForm form) {
         return ResponseEntity.ok(ProductItemDto.from(
-                productItemService.updateProductItem(
+                productItemServiceImpl.updateProductItem(
                         provider.getUserVo(token).getId(), form)));
     }
 
@@ -58,7 +58,7 @@ public class SellerProductController {
     @DeleteMapping("/item")
     public ResponseEntity<Void> deleteProductItem(@RequestHeader(name = "X-AUTH-TOKEN") String token
             , @RequestParam Long id) {
-        productItemService.deleteProductItem(provider.getUserVo(token).getId(), id);
+        productItemServiceImpl.deleteProductItem(provider.getUserVo(token).getId(), id);
         return ResponseEntity.ok().build();
     }
 }

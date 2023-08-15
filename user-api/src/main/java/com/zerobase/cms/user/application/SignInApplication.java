@@ -4,8 +4,8 @@ import com.zerobase.cms.user.domain.SignInForm;
 import com.zerobase.cms.user.domain.model.Customer;
 import com.zerobase.cms.user.domain.model.Seller;
 import com.zerobase.cms.user.exception.CustomException;
-import com.zerobase.cms.user.service.customer.CustomerService;
-import com.zerobase.cms.user.service.seller.SellerService;
+import com.zerobase.cms.user.service.customer.CustomerServiceImpl;
+import com.zerobase.cms.user.service.seller.SellerServiceImpl;
 import com.zerobase.domain.common.UserType;
 import com.zerobase.domain.config.JwtAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +16,9 @@ import static com.zerobase.cms.user.exception.ErrorCode.LOGIN_CHECK_FAIL;
 @Service
 @RequiredArgsConstructor
 public class SignInApplication {
-    private final CustomerService customerService;
+    private final CustomerServiceImpl customerService;
     private final JwtAuthenticationProvider provider;
-    private final SellerService sellerService;
+    private final SellerServiceImpl sellerServiceImpl;
 
     public String customerLoginToken(SignInForm form) {
         Customer customer =
@@ -29,7 +29,7 @@ public class SignInApplication {
 
     public String sellerLoginToken(SignInForm form) {
         Seller seller =
-                sellerService.findValidSeller(form.getEmail(), form.getPassword())
+                sellerServiceImpl.findValidSeller(form.getEmail(), form.getPassword())
                         .orElseThrow(() -> new CustomException(LOGIN_CHECK_FAIL));
         return provider.createToken(seller.getEmail(), seller.getId(), UserType.SELLER);
     }

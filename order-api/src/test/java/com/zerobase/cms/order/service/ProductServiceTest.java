@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class ProductServiceTest {
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productService;
     @Autowired
     private ProductRepository productRepository;
 

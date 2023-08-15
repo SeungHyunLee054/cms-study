@@ -1,7 +1,7 @@
 package com.zerobase.cms.order.controller;
 
 import com.zerobase.cms.order.domain.product.ProductDto;
-import com.zerobase.cms.order.service.ProductSearchService;
+import com.zerobase.cms.order.service.ProductSearchServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RequestMapping("/search/product")
 public class SearchController {
-    private final ProductSearchService productSearchService;
+    private final ProductSearchServiceImpl productSearchService;
 
     @GetMapping
     public ResponseEntity<List<ProductDto>> searchByName(@RequestParam String name) {

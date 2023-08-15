@@ -9,7 +9,7 @@ import com.zerobase.cms.order.domain.model.ProductItem;
 import com.zerobase.cms.order.domain.redis.Cart;
 import com.zerobase.cms.order.exception.CustomException;
 import com.zerobase.cms.order.exception.ErrorCode;
-import com.zerobase.cms.order.service.ProductItemService;
+import com.zerobase.cms.order.service.ProductItemServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +23,7 @@ import static com.zerobase.cms.order.exception.ErrorCode.ORDER_FAIL_NOT_ENOUGH_M
 public class OrderApplication {
     private final CartApplication cartApplication;
     private final UserClient userClient;
-    private final ProductItemService productItemService;
+    private final ProductItemServiceImpl productItemServiceImpl;
     private final MailgunClient mailgunClient;
 
     @Transactional
@@ -56,7 +56,7 @@ public class OrderApplication {
         for (Cart.Product product : orderCart.getProducts()) {
             for (Cart.ProductItem cartItem : product.getItems()) {
                 ProductItem productItem =
-                        productItemService.getProductItem(cartItem.getId());
+                        productItemServiceImpl.getProductItem(cartItem.getId());
                 productItem.setCount(
                         productItem.getCount() - cartItem.getCount());
 

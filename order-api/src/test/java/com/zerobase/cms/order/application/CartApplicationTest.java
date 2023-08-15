@@ -6,7 +6,7 @@ import com.zerobase.cms.order.domain.product.AddProductForm;
 import com.zerobase.cms.order.domain.product.AddProductItemForm;
 import com.zerobase.cms.order.domain.redis.Cart;
 import com.zerobase.cms.order.domain.repository.ProductRepository;
-import com.zerobase.cms.order.service.ProductService;
+import com.zerobase.cms.order.service.ProductServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +21,7 @@ class CartApplicationTest {
     @Autowired
     private CartApplication cartApplication;
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productService;
     @Autowired
     private ProductRepository productRepository;
 

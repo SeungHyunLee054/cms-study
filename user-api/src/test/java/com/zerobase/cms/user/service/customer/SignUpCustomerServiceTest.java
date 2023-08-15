@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 class SignUpCustomerServiceTest {
     @Autowired
-    private SignUpCustomerService signUpCustomerService;
+    private SignUpCustomerServiceImpl signUpCustomerServiceImpl;
 
     @Test
     void signUp() {
@@ -27,7 +27,7 @@ class SignUpCustomerServiceTest {
                 .phone("01012345678")
                 .build();
 
-        Customer c = signUpCustomerService.signUp(form);
+        Customer c = signUpCustomerServiceImpl.signUp(form);
         //when
         //then
         assertNotNull(c.getId());
