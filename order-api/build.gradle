@@ -39,12 +39,17 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
+    //queryDSL
+    implementation 'com.querydsl:querydsl-jpa:5.0.0'
+    annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jpa'
+    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+    annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
 
     //redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-//    testImplementation('it.ozimov:embedded-reids:0.7.3'){
-//        exclude group: "org.slf4j", module: "slf4j-simple"
-//    }
+    testImplementation('it.ozimov:embedded-reids:0.7.3'){
+        exclude group: "org.slf4j", module: "slf4j-simple"
+    }
     testImplementation 'com.h2database:h2'
 
     annotationProcessor 'org.projectlombok:lombok'
