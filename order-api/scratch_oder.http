@@ -58,3 +58,13 @@ X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aEJHaWtEb2hZZDRob0syZVhZb0tIV0U1dD
   "name": "260",
   "price": 100000
 }
+
+### 상품 삭제
+DELETE http://localhost:8082/seller/product?id=1
+Content-Type: application/json
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aEJHaWtEb2hZZDRob0syZVhZb0tIV0U1dDg5SHlpL1RyL1UyUmRtZGZFPSIsImp0aSI6IlN1YkhlS1VSUnJlUVkrV1NPbkJrdGc9PSIsInJvbGVzIjoiU0VMTEVSIiwiaWF0IjoxNjkyMTE1MTYxLCJleHAiOjE2OTIyMDE1NjF9.SRy2h6flH9addf5FQzlxrodPECQBD6kMwaSxHNqSf1E
+
+### 상품 아이템 삭제
+DELETE http://localhost:8082/seller/product/item?id=2
+Content-Type: application/json
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aEJHaWtEb2hZZDRob0syZVhZb0tIV0U1dDg5SHlpL1RyL1UyUmRtZGZFPSIsImp0aSI6IlN1YkhlS1VSUnJlUVkrV1NPbkJrdGc9PSIsInJvbGVzIjoiU0VMTEVSIiwiaWF0IjoxNjkyMTE1MTYxLCJleHAiOjE2OTIyMDE1NjF9.SRy2h6flH9addf5FQzlxrodPECQBD6kMwaSxHNqSf1E
