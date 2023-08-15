@@ -7,6 +7,10 @@ plugins {
 group = 'com.zerobase'
 version = '0.0.1-SNAPSHOT'
 
+java {
+    sourceCompatibility = '11'
+}
+
 repositories {
     mavenCentral()
 }
@@ -38,14 +42,15 @@ dependencies {
 
     //redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    testImplementation('it.ozimov:embedded-reids:0.7.3'){
-        exclude group: "org.slf4j", module: "slf4j-simple"
-    }
+//    testImplementation('it.ozimov:embedded-reids:0.7.3'){
+//        exclude group: "org.slf4j", module: "slf4j-simple"
+//    }
     testImplementation 'com.h2database:h2'
 
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
