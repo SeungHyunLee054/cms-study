@@ -19,24 +19,24 @@ POST http://localhost:8081/signIn/customer
 Content-Type: application/json
 
 {
-  "email": "yellow13lsh@naver.com",
+  "email": "seunghyun937@gmail.com",
   "password": "1234"
 }
 
 ### 회원 정보 조회 ( 고객 )
 GET http://localhost:8081/customer/getInfo
 Content-Type: application/json
-X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJidCt2TURvSFVmMkdQSXlKbjkrV3BRcVlMN0twS2YvY2RIaEJGcERDM2FRPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE2OTE3MDcyNTMsImV4cCI6MTY5MTc5MzY1M30.hcN1_7ZM3auTcvhdFbnrfW2q_2BAa2GVXNIs1jQgMnE
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aEJHaWtEb2hZZDRob0syZVhZb0tIV0U1dDg5SHlpL1RyL1UyUmRtZGZFPSIsImp0aSI6InFpalNBakR1VUZRVnlabDFkMStsZ1E9PSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE2OTIxMzc2NzYsImV4cCI6MTY5MjIyNDA3Nn0.IUBi_EtCdbQMDuy_45BoAcJa0OR2lZxi8L6g7Q2yoxY
 
 ### 잔액 변경 ( 고객 )
 POST http://localhost:8081/customer/balance
 Content-Type: application/json
-X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJidCt2TURvSFVmMkdQSXlKbjkrV3BRcVlMN0twS2YvY2RIaEJGcERDM2FRPSIsImp0aSI6IkNtWUR2NU1LNVlVeWlrOEtHTkR3b3c9PSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE2OTE3MDcyNTMsImV4cCI6MTY5MTc5MzY1M30.hcN1_7ZM3auTcvhdFbnrfW2q_2BAa2GVXNIs1jQgMnE
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aEJHaWtEb2hZZDRob0syZVhZb0tIV0U1dDg5SHlpL1RyL1UyUmRtZGZFPSIsImp0aSI6InFpalNBakR1VUZRVnlabDFkMStsZ1E9PSIsInJvbGVzIjoiQ1VTVE9NRVIiLCJpYXQiOjE2OTIxMzc2NzYsImV4cCI6MTY5MjIyNDA3Nn0.IUBi_EtCdbQMDuy_45BoAcJa0OR2lZxi8L6g7Q2yoxY
 
 {
   "from": "server",
   "message": "돈 충전",
-  "money": 50000
+  "money": 1000000
 }
 
 #######################################
