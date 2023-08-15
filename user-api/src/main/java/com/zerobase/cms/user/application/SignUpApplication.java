@@ -7,8 +7,8 @@ import com.zerobase.cms.user.domain.model.Customer;
 import com.zerobase.cms.user.domain.model.Seller;
 import com.zerobase.cms.user.exception.CustomException;
 import com.zerobase.cms.user.exception.ErrorCode;
-import com.zerobase.cms.user.service.customer.SignUpCustomerService;
-import com.zerobase.cms.user.service.seller.SellerService;
+import com.zerobase.cms.user.service.customer.SignUpCustomerServiceImpl;
+import com.zerobase.cms.user.service.seller.SellerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -19,14 +19,14 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class SignUpApplication {
     private final MailgunClient mailgunClient;
-    private final SignUpCustomerService signUpCustomerService;
-    private final SellerService sellerService;
+    private final SignUpCustomerServiceImpl signUpCustomerServiceImpl;
+    private final SellerServiceImpl sellerServiceImpl;
 
     public String customerSignUp(SignUpForm form) {
-        if (signUpCustomerService.isEmailExist(form.getEmail())) {
+        if (signUpCustomerServiceImpl.isEmailExist(form.getEmail())) {
             throw new CustomException(ErrorCode.ALREADY_REGISTER_USER);
         } else {
-            Customer customer = signUpCustomerService.signUp(form);
+            Customer customer = signUpCustomerServiceImpl.signUp(form);
 
             String code = getRandomCode();
             SendMailForm sendMailForm = SendMailForm.builder()
@@ -36,16 +36,16 @@ public class SignUpApplication {
                     .text(getVerificationEmailBody(customer.getEmail(), customer.getName(), "customer", code))
                     .build();
             log.info("Send email result : " + mailgunClient.sendEmail(sendMailForm).body());
-            signUpCustomerService.changeCustomerValidateEmail(customer.getId(), code);
+            signUpCustomerServiceImpl.changeCustomerValidateEmail(customer.getId(), code);
             return "회원 가입 성공";
         }
     }
 
     public String sellerSignUp(SignUpForm form) {
-        if (sellerService.isEmailExist(form.getEmail())) {
+        if (sellerServiceImpl.isEmailExist(form.getEmail())) {
             throw new CustomException(ErrorCode.ALREADY_REGISTER_USER);
         } else {
-            Seller seller = sellerService.signUp(form);
+            Seller seller = sellerServiceImpl.signUp(form);
 
             String code = getRandomCode();
             SendMailForm sendMailForm = SendMailForm.builder()
@@ -55,17 +55,17 @@ public class SignUpApplication {
                     .text(getVerificationEmailBody(seller.getEmail(), seller.getName(), "seller", code))
                     .build();
             log.info("Send email result : " + mailgunClient.sendEmail(sendMailForm).body());
-            sellerService.changeSellerValidateEmail(seller.getId(), code);
+            sellerServiceImpl.changeSellerValidateEmail(seller.getId(), code);
             return "회원 가입 성공";
         }
     }
 
     public void sellerVerify(String email, String code) {
-        sellerService.verifyEmail(email, code);
+        sellerServiceImpl.verifyEmail(email, code);
     }
 
     public void customerVerify(String email, String code) {
-        signUpCustomerService.verifyEmail(email, code);
+        signUpCustomerServiceImpl.verifyEmail(email, code);
     }
 
     private String getRandomCode() {

@@ -3,7 +3,7 @@ package com.zerobase.cms.user.controller;
 import com.zerobase.cms.user.domain.model.Seller;
 import com.zerobase.cms.user.domain.seller.SellerDto;
 import com.zerobase.cms.user.exception.CustomException;
-import com.zerobase.cms.user.service.seller.SellerService;
+import com.zerobase.cms.user.service.seller.SellerServiceImpl;
 import com.zerobase.domain.common.UserVo;
 import com.zerobase.domain.config.JwtAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +20,12 @@ import static com.zerobase.cms.user.exception.ErrorCode.NO_EXIST_USER;
 @RequiredArgsConstructor
 public class SellerController {
     private final JwtAuthenticationProvider provider;
-    private final SellerService sellerService;
+    private final SellerServiceImpl sellerServiceImpl;
 
     @GetMapping("/getInfo")
     public ResponseEntity<?> getInfo(@RequestHeader(name = "X-AUTH-TOKEN") String token) {
         UserVo vo = provider.getUserVo(token);
-        Seller seller = sellerService.findByIdAndEmail(vo.getId(), vo.getEmail())
+        Seller seller = sellerServiceImpl.findByIdAndEmail(vo.getId(), vo.getEmail())
                 .orElseThrow(() -> new CustomException(NO_EXIST_USER));
         return ResponseEntity.ok(SellerDto.from(seller));
     }

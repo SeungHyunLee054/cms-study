@@ -1,6 +1,6 @@
 package com.zerobase.cms.user.config.filter;
 
-import com.zerobase.cms.user.service.seller.SellerService;
+import com.zerobase.cms.user.service.seller.SellerServiceImpl;
 import com.zerobase.domain.common.UserVo;
 import com.zerobase.domain.config.JwtAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class SellerFilter implements Filter {
     private final JwtAuthenticationProvider provider;
-    private final SellerService sellerService;
+    private final SellerServiceImpl sellerServiceImpl;
 
 
     @Override
@@ -25,7 +25,7 @@ public class SellerFilter implements Filter {
             throw new ServletException("Invalid Access");
         }
         UserVo vo = provider.getUserVo(token);
-        sellerService.findByIdAndEmail(vo.getId(), vo.getEmail())
+        sellerServiceImpl.findByIdAndEmail(vo.getId(), vo.getEmail())
                 .orElseThrow(() -> new ServletException("Invalid Access"));
         chain.doFilter(request, response);
     }

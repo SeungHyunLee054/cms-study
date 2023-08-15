@@ -1,6 +1,6 @@
 package com.zerobase.cms.user.config.filter;
 
-import com.zerobase.cms.user.service.customer.CustomerService;
+import com.zerobase.cms.user.service.customer.CustomerServiceImpl;
 import com.zerobase.domain.common.UserVo;
 import com.zerobase.domain.config.JwtAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class CustomerFilter implements Filter {
     private final JwtAuthenticationProvider provider;
-    private final CustomerService customerService;
+    private final CustomerServiceImpl customerService;
 
 
     @Override
