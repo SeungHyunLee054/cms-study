@@ -31,7 +31,7 @@ public class CartApplication {
             throw new CustomException(NO_EXIST_PRODUCT);
         }
         Cart cart = cartService.getCart(customerId);
-        if (cart != null && !addAble(cart, product, form)) {
+        if (!addAble(cart, product, form)) {
             throw new CustomException(ITEM_COUNT_NOT_ENOUGH);
         }
         return cartService.addCart(customerId, form);
@@ -44,6 +44,7 @@ public class CartApplication {
 
     public Cart getCart(Long customerId) {
         Cart cart = refreshCart(cartService.getCart(customerId));
+        cartService.putCart(cart.getCustomerId(), cart);
         Cart returnCart = new Cart();
         returnCart.setCustomerId(customerId);
         returnCart.setProducts(cart.getProducts());
@@ -57,7 +58,7 @@ public class CartApplication {
         cartService.putCart(customerId, null);
     }
 
-    private Cart refreshCart(Cart cart) {
+    protected Cart refreshCart(Cart cart) {
         Map<Long, Product> productMap = productSearchService.getListByProductIds(
                         cart.getProducts().stream()
                                 .map(Cart.Product::getId)
@@ -99,13 +100,14 @@ public class CartApplication {
                     cartProductItem.setCount(pi.getCount());
                 }
                 if (isCountNotEnough && isPriceChanged) {
-                    tmpMessages.add(cartProductItem + " 가격 변동," +
+                    tmpMessages.add(cartProductItem.getName() + " 가격 변동," +
                             " 수량이 부족하여 구매 가능한 최대치로 변경되었습니다.");
                 } else if (isCountNotEnough) {
-                    tmpMessages.add(cartProductItem +
+                    tmpMessages.add(cartProductItem.getName() +
                             " 수량이 부족하여 구매 가능한 최대치로 변경되었습니다..");
                 } else if (isPriceChanged) {
-                    tmpMessages.add(cartProductItem + " 가격이 변동되었습니다.");
+                    tmpMessages.add(cartProductItem.getName() +
+                            " 가격이 변동되었습니다.");
                 }
             }
             if (cartProduct.getItems().size() == 0) {
@@ -122,7 +124,6 @@ public class CartApplication {
                 cart.addMessage(sb.toString());
             }
         }
-        cartService.putCart(cart.getCustomerId(), cart);
         return cart;
     }
 
