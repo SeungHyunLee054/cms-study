@@ -42,6 +42,14 @@ public class ProductItemService {
         return productItem;
     }
 
+    @Transactional
+    public void deleteProductItem(Long sellerId, Long productItemId) {
+        ProductItem productItem = productItemRepository.findById(productItemId)
+                .filter(pi -> pi.getSellerId().equals(sellerId))
+                .orElseThrow(() -> new CustomException(NO_EXIST_ITEM));
+        productItemRepository.delete(productItem);
+    }
+
     private void validateAddProductItem(Product product, AddProductItemForm form) {
         if (product.getProductItems().stream()
                 .anyMatch(item -> item.getName().equals(form.getName()))) {
