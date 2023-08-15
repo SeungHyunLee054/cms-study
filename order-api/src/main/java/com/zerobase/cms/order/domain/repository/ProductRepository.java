@@ -10,7 +10,7 @@ import java.util.Optional;
 import static org.springframework.data.jpa.repository.EntityGraph.EntityGraphType.LOAD;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long>, ProductRepositoryCustom {
     @EntityGraph(attributePaths = "productItems", type = LOAD)
     Optional<Product> findWithProductItemsById(Long id);
 
