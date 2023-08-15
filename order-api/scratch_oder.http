@@ -13,7 +13,7 @@ X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aEJHaWtEb2hZZDRob0syZVhZb0tIV0U1dD
       "price": 100000
     }
   ],
-  "name": "나이키 에어포스2"
+  "name": "나이키 에어포스"
 }
 
 ### 상품 아이템 추가
@@ -76,3 +76,23 @@ Content-Type: application/json
 ### 상품 디테일 검색
 GET http://localhost:8082/search/product/detail?productId=1
 Content-Type: application/json
+
+### 카트 추가
+POST http://localhost:8082/customer/cart
+Content-Type: application/json
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6aEJHaWtEb2hZZDRob0syZVhZb0tIV0U1dDg5SHlpL1RyL1UyUmRtZGZFPSIsImp0aSI6IlN1YkhlS1VSUnJlUVkrV1NPbkJrdGc9PSIsInJvbGVzIjoiU0VMTEVSIiwiaWF0IjoxNjkyMTE1MTYxLCJleHAiOjE2OTIyMDE1NjF9.SRy2h6flH9addf5FQzlxrodPECQBD6kMwaSxHNqSf1E
+
+{
+  "description": "상품 설명",
+  "id": 1,
+  "items": [
+    {
+      "count": 1,
+      "id": 1,
+      "name": "270",
+      "price": 100000
+    }
+  ],
+  "name": "나이키 에어포스",
+  "sellerId": 1
+}
